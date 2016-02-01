@@ -2,6 +2,12 @@ I am now doing to demostrate the ToDo activities in the document
 provided:
 <https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf>.
 
+Short introduction: 
+The main objective of this assignment is to get familiar with the R markdown format as well as Knitr and using the file link "https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf", understand how the R programming language works. I went over the exercises and using key concepts, finished the ToDo exerceses. Some plotting functions were used to show the results of the code I created. 
+I had used some sources such as the link provided above, along with "http://rmarkdown.rstudio.com" and "http://kbroman.org/knitr_knutshell/pages/Rmarkdown.html" to understand how knitr code works. 
+
+
+
 1.  Compute the difference between 2014 and the year you started at this
     university and divide this by the difference between 2014 and the
     year you were born. Multiply this with 100 to get the percentage of
