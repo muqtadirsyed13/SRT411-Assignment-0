@@ -1,0 +1,174 @@
+---
+title: "Assignment0, working with Knitr and markdown and HTML output"
+author: "Muqtadir Syed"
+date: "january, 27, 2016"
+output: html_document
+---
+
+I am now doing to demostrate the ToDo activities in the document provided: https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf.
+
+1. Compute the difference between 2014 and the year you started at this university and divide this by the difference between 2014 and the year you were born. Multiply this with 100 to get the percentage of your life you have spent at this university. Use brackets if you need them.
+
+```{r}
+(((2014-2014)/(2014-1995))*100)
+```
+
+2. Repeat the previous ToDo, but with several steps in between. You can give the variables any name you want, but the name has to start with a letter.
+
+```{r}
+year=2014
+start=2014
+yearborn=1995
+((year-start)/(year-yearborn))*100
+```
+
+3. Compute the sum of 4, 5, 8 and 11 by first combining them into a vector and then using the function sum.
+
+```{r}
+a <- c(4,5,8,11)
+sum(a)
+```
+
+4. Plot 100 normal random numbers.
+
+```{r}
+x <- rnorm(100)
+plot(x)
+```
+
+5. Find help for the sqrt function.
+
+```{r}
+help(sqrt)
+```
+
+6. Make a file called firstscript.R containing R- code that generates 100 random numbers and plots them, and run this script several times.
+
+- For this question I simply created a new file using the +file button and ran the code 
+```{r}
+random = rnorm(100)
+plot(random)
+```
+
+7. Put the numbers 31 to 60 in a vector named P and in a matrix with 6 rows and 5 columns named Q. Tip: use the function seq. Look at the different ways scalars, vectors and matrices are denoted in the workspace window.
+
+```{r}
+P = seq(from=31, to=60)
+Q=matrix(P, nrow=6, ncol=5)
+Q
+```
+
+8. Make a script file which constructs three random normal vectors of length 100. Call these vectors x1, x2 and x3. Make a data frame called t with three columns (called a, b and c) containing respectively x1, x1+x2 and x1+x2+x3. Call the following functions for this data frame: plot(t) and sd(t). Can you understand the results? Rerun this script a few times.
+
+```{r}
+x1=rnorm(100)
+x2=rnorm(100)
+x3=rnorm(100)
+
+t = data.frame(a=x1, b=x1+x2, c=x1+x2+x3)
+t
+```
+
+It is evident from these random values that every data fram values will be different because the function x1 x2 and x3 is computed a totally random value upto 100. 
+```{r}
+x1=rnorm(100)
+x2=rnorm(100)
+x3=rnorm(100)
+
+t = data.frame(a=x1, b=x1+x2, c=x1+x2+x3)
+t
+plot(t)
+```
+
+Once again the random values are different as well as the plot is different
+```{r}
+x1=rnorm(100)
+x2=rnorm(100)
+x3=rnorm(100)
+
+t = data.frame(a=x1, b=x1+x2, c=x1+x2+x3)
+t
+plot(t)
+```
+
+
+9. 
+For this Todo, the meaning of RGB had to be explained. Basically, an RGB is a function that creates colors corresponsing to specified intensities. The intensities range from 0 and max of the colours red, green and blue. These colours can be specified using transparencies. The arguments included with the RGB function is the numerical vector, the character vector aling with the maxColorValue which is the maximum colour value range. 
+The argument 'pch' is the point type. 1=circle, 2=triangle
+The argument 'lwd' is to maintain the point borderline width
+The argument 'cex' is to play around with the point size itself
+```{r}
+plot(t$a, type="l", ylim=range(t),
+ lwd=3, col=rgb(1,0,0,0.3))
+lines(t$b, type="s", lwd=2,
+ col=rgb(0.3,0.4,0.3,0.9))
+points(t$c, pch=20, cex=4,
+ col=rgb(0,0,1,0.3))
+```
+
+10.
+In this example we're looking at READING AND WRITING DATA FILES. There are a few ways to do this, below I demonstrate how to create a data frame, write it to a text file and read the file.
+a) Firsly, a data set named d was creating containing all the column names with their values respectively.
+b) the data set b was then written into a file named tst1.txt and the saved outout does not contain row.names
+c) the read.table operation was done and put into a variable d2
+d) variable d3 was created to extract the 'g' column, multiply it 
+e) the column d3 was then written to a new file named 'tst2.txt as instructed by the ToDo exercise. 
+```{r}
+d = data.frame(a=c(1,2,4,8,16,32), g=c(2,4,8,16,32,64), x=c(3,6,12,24,48,96))
+
+write.table(d, file="tst1.txt", row.names=FALSE)
+
+d2 = read.table(file="tst1.txt", header=TRUE)
+
+d3 = d2["g"] * 5
+
+write.table(d3, file="tst2.txt", row.names=FALSE)
+```
+
+11. Compute the mean of the square root of a vec- tor of 100 random numbers. What happens?
+
+- What happens is that we get a warning in the square root function because NaNs are produced. NaNs stand of 'Not a Number' and is usually occured for arithmetic values such as 0/0.
+
+```{r}
+vc=rnorm(100)
+vc1=sqrt(vc)
+mean(vc1)
+```
+
+12. 
+```{r}
+date1=strptime( c("201601310100000", "20141205000000", "20160813000000"), format="%Y%m%d%H%M%S")
+vec1=(c(1, 3, 2))
+plot(date1, vec1, main="SpecialDates vs Presents", sub="x and y plot", xlab="special dates", ylab="presents expected")
+```
+
+13. Make a vector from 1 to 100. Make a for-loop which runs through the whole vector. Multiply the elements which are smaller than 5 and larger than 90 with 10 and the other elements with 0.1.
+
+- In this exercice, I first created an r1 variable which contains a vector from 1 to 100. Then using 3 for loops, I firstly multiply the elements 90 - 100 by 10, then 0 - 5 by 10 and 6-89 by value of 0.1. 
+
+```{r}
+r1=seq(from=1, to=100)
+r2= c()
+for(i in 90:100)
+{
+  r2[i] = r1[i] * 10
+}
+for(i in 1:5)
+{
+  r2[i] = r1[i] * 10
+}
+for (i in 6:89)
+{
+  r2[i] = r1[i] * 0.1
+}
+r2
+```
+
+14. Write a function for the previous ToDo, so that you can feed it any vector you like (as argument). Use a for-loop in the func- tion to do the computation with each ele- ment. Use the standard R function length in the specification of the counter.
+
+```{r}
+
+fun1=function(arg1, arg2)
+{
+  w = arg1
+}
